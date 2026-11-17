@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#111916" />
+  <meta name="description" content="Dead Frequency. A cinematic, playable Three.js FPS. Infiltrate an abandoned mountain communications outpost, disable the sentries, and restore the signal." />
+  <title>DEAD FREQUENCY — Outpost 07</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <script type="module" crossorigin src="./assets/index-CEwHsNBi.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/three-core-CktFoGrt.js">
+  <link rel="modulepreload" crossorigin href="./assets/three-renderer-C45WVl5R.js">
+  <link rel="modulepreload" crossorigin href="./assets/three-addons-BGPOtOrJ.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-Dv08O7ih.css">
+</head>
+<body>
+  <div id="game"></div>
+  <div id="vignette"></div><div id="damage-flash"></div><div id="letterbox"></div>
+  <div id="loading"><div class="loading-symbol">⟁</div><span class="eyebrow">ESTABLISHING CONNECTION</span><div class="load-track"><i id="load-bar"></i></div><span id="load-status">Preparing the outpost</span></div>
+  <main id="menu" class="screen">
+    <header class="menu-header"><a class="brand" href="#" aria-label="Dead Frequency"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M3 25V5h9v8h6V5h9v20h-9v-8h-6v8H3Z" stroke="currentColor" stroke-width="1.5"/><path d="M7 9v12M23 9v12" stroke="currentColor"/></svg><span>MERIDIAN<span class="subbrand">INTERACTIVE FIELDWORK</span></span></a><div class="header-meta"><span class="live-dot"></span> THREE.JS / REAL-TIME 3D <span class="meta-divider"></span> VOL. 001</div><button class="icon-button" id="settings-button" aria-label="Open settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button></header>
+    <div class="hero-copy">
+      <div class="eyebrow operation-label"><span class="cross-symbol">+</span> OPERATION / 07 <span class="label-line"></span> SINGLE PLAYER</div>
+      <h1>DEAD<br><span>FREQUENCY</span><b>®</b></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-description">The station went silent.<br>Find the signal. Leave nothing behind.</p>
+      <div class="deploy-row"><button id="deploy" class="primary-button"><span class="button-index">01</span><span>ENTER OPERATION</span><span class="button-arrow">↗</span></button><button id="explore" class="text-button">EXPLORE <span>↗</span></button></div>
+      <div class="hero-footnote"><span class="live-dot"></span> A SMALL WORLD. EVERY DETAIL MATTERS.</div>
+    </div>
+    <aside class="location-card"><div class="location-top"><span class="eyebrow">YOUR DESTINATION</span><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v5m0 10v5M2 12h5m10 0h5"/><circle cx="12" cy="12" r="6"/></svg></div><div class="location-number">07<span>RELAY<br>STATION</span></div><div class="location-name">KJØLEN, NORWAY</div><div class="location-coords">61°18′24″ N &nbsp; 05°42′09″ E</div><div class="location-weather"><span>06:42 AM</span><span>8°C / LIGHT RAIN</span></div><div class="difficulty"><i></i><i></i><i></i><i class="empty"></i><span>HOSTILE TERRITORY</span></div></aside>
+    <footer class="menu-footer"><div class="key-guide"><span><kbd>W A S D</kbd> MOVE</span><span><kbd>MOUSE</kbd> LOOK</span><span><kbd>R</kbd> RELOAD</span><span><kbd>ESC</kbd> PAUSE</span></div><span class="headphones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 13v-3a8 8 0 0 1 16 0v3M4 12H2v8h5v-8H4Zm16 0h2v8h-5v-8h3Z"/></svg> BEST WITH HEADPHONES</span><span class="build-number">BUILD 1.0 / WEBGL 2</span></footer>
+  </main>
+  <div id="hud" class="hidden">
+    <div class="hud-top-left"><div class="hud-brand"><span class="live-dot"></span> MERIDIAN / FIELD LINK</div><span id="mode-label">OPERATION DEAD FREQUENCY</span></div>
+    <div id="compass"><div id="compass-strip"></div><span class="compass-caret"></span><span id="heading">000</span></div>
+    <div class="objective"><div class="eyebrow"><i></i> CURRENT OBJECTIVE</div><div id="objective-title">SILENCE THE SENTRIES</div><p id="objective-detail">Clear the relay yard <span id="kill-count">0 / 5</span></p><div class="objective-track"><i id="objective-progress"></i></div></div>
+    <div class="radar-wrap"><div class="radar-heading"><span>OUTPOST 07</span><span id="timer">00:00</span></div><canvas id="radar" width="224" height="224" aria-label="Live tactical minimap"></canvas><div class="radar-footer"><span class="live-dot"></span><span id="radar-status">SCANNING PERIMETER</span><span>N ↑</span></div></div>
+    <div id="crosshair"><i></i><i></i><i></i><i></i><b></b></div><div id="hitmarker">×</div><div id="kill-confirm"><span id="kill-name">SENTRY DISABLED</span><b>+150</b></div>
+    <div id="world-marker"><div class="marker-diamond">◆</div><span id="marker-label">UPLINK</span><b id="marker-distance">24 M</b></div>
+    <div id="interaction" class="hidden"><kbd>E</kbd><span id="interaction-text">RESTORE UPLINK</span><div id="interact-progress"></div></div>
+    <div id="notification"><span class="notification-icon">↗</span><div><span id="notification-label">FIELD INTELLIGENCE</span><p id="notification-text"></p></div></div>
+    <div class="hud-bottom-left"><div class="operator"><span class="operator-icon">✚</span><span>CALLSIGN <b>GHOST–01</b></span></div><div class="vitals"><span class="vital-label">VITALS</span><strong id="health-value">100</strong><span class="vital-max">/ 100</span><div class="health-bars" id="health-bars"></div></div><div class="armor"><span>+</span><div><i id="armor-fill"></i></div><span id="armor-value">50</span></div><div class="stamina"><i id="stamina-fill"></i></div></div>
+    <div class="hud-bottom-center"><span><kbd>SHIFT</kbd> SPRINT</span><span><kbd>RMB</kbd> AIM</span><span><kbd>F</kbd> LIGHT</span><span><kbd>ESC</kbd> PAUSE</span></div>
+    <div class="hud-bottom-right"><div class="weapon-name"><span>01 / PRIMARY</span><b>MK18 MOD 1</b></div><div class="ammo-row"><strong id="ammo">30</strong><span class="ammo-slash">/</span><span id="reserve">180</span><svg class="bullet-icon" viewBox="0 0 10 30" fill="currentColor"><path d="M2 29V10L5 1l3 9v19H2Zm1-4h4v-1H3v1Z"/></svg></div><div class="fire-mode"><i></i> AUTOMATIC <span>5.56 × 45 MM</span></div><div class="ammo-track"><i id="ammo-fill"></i></div></div>
+    <div id="reload-indicator" class="hidden"><span>RELOADING</span><div><i></i></div></div>
+    <div id="location-toast"><span>KJØLEN COMMUNICATIONS ARRAY</span><b>OUTPOST 07</b><i>61.3067° N / 5.7025° E</i></div>
+    <div id="touch-controls" class="hidden"><div id="joystick"><i></i></div><button id="touch-fire" aria-label="Fire">◎</button><button id="touch-aim" aria-label="Aim">⊕</button><button id="touch-reload" aria-label="Reload">R</button><button id="touch-interact" aria-label="Interact">E</button><button id="touch-pause" aria-label="Pause">Ⅱ</button></div>
+  </div>
+  <div id="pause" class="modal-screen hidden"><div class="modal-panel"><span class="eyebrow">CONNECTION SUSPENDED</span><h2>TAKE A<br>BREATHER.</h2><p>The outpost can wait.</p><button id="resume" class="primary-button">RESUME OPERATION <span>↗</span></button><button id="pause-settings" class="secondary-button">SETTINGS <span>↗</span></button><button id="restart" class="text-button">RESTART MISSION</button><div class="pause-controls"><span><kbd>W A S D</kbd> Move</span><span><kbd>SPACE</kbd> Jump</span><span><kbd>SHIFT</kbd> Sprint</span><span><kbd>C</kbd> Crouch</span><span><kbd>R</kbd> Reload</span><span><kbd>F</kbd> Flashlight</span><span><kbd>E</kbd> Interact</span><span><kbd>RMB</kbd> Aim down sights</span></div></div></div>
+  <div id="settings" class="modal-screen hidden"><div class="modal-panel settings-panel"><div class="settings-heading"><span class="eyebrow">FIELD PREFERENCES</span><button id="close-settings" class="icon-button" aria-label="Close settings">×</button></div><h2>FINE TUNE.</h2><label>GRAPHICS QUALITY<select id="quality"><option value="high">High — full atmosphere</option><option value="medium">Balanced — smoother play</option><option value="low">Performance — lighter GPU</option></select></label><label>MOUSE SENSITIVITY <output id="sensitivity-value">1.0</output><input id="sensitivity" type="range" min="0.3" max="2.5" step="0.1" value="1" /></label><label>FIELD OF VIEW <output id="fov-value">80°</output><input id="fov" type="range" min="65" max="100" step="1" value="80" /></label><label>MASTER VOLUME <output id="volume-value">65%</output><input id="volume" type="range" min="0" max="100" step="1" value="65" /></label><label class="toggle-label">SCREEN SHAKE<input type="checkbox" id="screen-shake" checked/><span class="toggle"></span></label><p class="settings-note">Scanned surfaces. Dynamic shadows. Real-time reflections.<br>Built in Three.js. Environment materials by Poly Haven (CC0).</p><button class="primary-button" id="save-settings">BACK TO THE FIELD <span>↗</span></button></div></div>
+  <div id="results" class="modal-screen hidden"><div class="modal-panel results-panel"><span class="eyebrow" id="result-eyebrow">UPLINK RESTORED / EXTRACTION COMPLETE</span><h2 id="result-title">SIGNAL<br>RECEIVED.</h2><p id="result-description">The relay is back online. Good work, Ghost.</p><div class="result-stats"><div><span>TIME IN FIELD</span><strong id="result-time">00:00</strong></div><div><span>SENTRIES CLEARED</span><strong id="result-kills">5 / 5</strong></div><div><span>ACCURACY</span><strong id="result-accuracy">84%</strong></div></div><button class="primary-button" id="play-again">DEPLOY AGAIN <span>↗</span></button><button class="text-button" id="return-menu">RETURN TO MAIN MENU</button></div></div>
+  <div id="error" class="hidden"><h2>Unable to start the renderer</h2><p id="error-detail"></p><button onclick="location.reload()">Try again</button></div>
+</body>
+</html>
